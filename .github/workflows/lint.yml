@@ -10,9 +10,6 @@ on:
       - develop
       - main
 
-permissions:
-  contents: write
-
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -27,19 +24,6 @@ jobs:
       - name: Install Dependencies
         run: |
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-          npm install
 
       - name: Run Pint
         run: vendor/bin/pint
-
-      - name: Format Frontend
-        run: npm run format
-
-      - name: Lint Frontend
-        run: npm run lint
-
-      # - name: Commit Changes
-      #   uses: stefanzweifel/git-auto-commit-action@v7
-      #   with:
-      #     commit_message: fix code style
-      #     commit_options: '--no-verify'
